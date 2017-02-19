@@ -3,7 +3,7 @@ Encoding files in photos
 
 Usage:
 
-1) Compiled in netbeans (frame.java)
+1) Compile in netbeans (frame.java)
 
 2) Click on encode and choose a file (any size)
 
