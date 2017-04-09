@@ -13,7 +13,7 @@ Usage:
 
 General Info:
 
-The program uses a 512x512 RGB png (by default), meaning it can store 512\*512\*4 bytes in each png (4 channels, 1 byte per channel). This totals 1048576 bytes, or exactly 1 Mebibyte (MiB) per png (slightly over 1 Megabyte).
+The program uses a 512x512 RGBA png (by default), meaning it can store 512\*512\*4 bytes in each png (4 channels, 1 byte per channel). This totals 1048576 bytes, or exactly 1 Mebibyte (MiB) per png (slightly over 1 Megabyte).
 
 The current version of this program allows the user to select a custom width and height for the images to be generated. This does not need to be correctly entered when decoding images back into files.
 

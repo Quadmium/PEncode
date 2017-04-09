@@ -198,7 +198,7 @@ public class frame extends javax.swing.JFrame {
                 
                 DataBuffer buffer = new DataBufferByte(modData, modData.length);
 
-                //4 bytes per pixel: alpha, red, green and blue
+                //4 bytes per pixel: red, green, blue and alpha
                 //              createInterleavedRaster(DataBuffer dataBuffer, int w, int h, int scanlineStride, int pixelStride, int[] bandOffsets, Point location)
                 WritableRaster raster = Raster.createInterleavedRaster(buffer, width, height, 4 * width, 4, new int[] {3, 2, 1, 0}, (Point)null);
                 //                                     ComponentColorModel(ColorSpace colorSpace, boolean hasAlpha, boolean isAlphaPremultiplied, int transparency, int transferType)
