@@ -113,7 +113,7 @@ public class frame extends javax.swing.JFrame {
             for(int fileIndex = 0; dataCtr < data.length; fileIndex++)
             {
                 // Add 4 for first int that tells you how long the data is
-                byte[] modData = new byte[size*size*3];
+                byte[] modData = new byte[size*size*4];
                 int modCtr = 0;
                 if(fileIndex == 0)
                 {
@@ -135,10 +135,13 @@ public class frame extends javax.swing.JFrame {
 
                 DataBuffer buffer = new DataBufferByte(modData, modData.length);
 
-                //3 bytes per pixel: red, green, blue
-                WritableRaster raster = Raster.createInterleavedRaster(buffer, width, height, 3 * width, 3, new int[] {2, 1, 0}, (Point)null);
-                ColorModel cm = new ComponentColorModel(ColorModel.getRGBdefault().getColorSpace(), false, true, Transparency.OPAQUE, DataBuffer.TYPE_BYTE); 
-                BufferedImage image = new BufferedImage(cm, raster, true, null);
+                //4 bytes per pixel: alpha, red, green and blue
+                //              createInterleavedRaster(DataBuffer dataBuffer, int w, int h, int scanlineStride, int pixelStride, int[] bandOffsets, Point location)
+                WritableRaster raster = Raster.createInterleavedRaster(buffer, width, height, 4 * width, 4, new int[] {3, 2, 1, 0}, (Point)null);
+                //                                     ComponentColorModel(ColorSpace colorSpace, boolean hasAlpha, boolean isAlphaPremultiplied, int transparency, int transferType)
+                ColorModel cm = new ComponentColorModel(ColorModel.getRGBdefault().getColorSpace(), true, false, Transparency.TRANSLUCENT, DataBuffer.TYPE_BYTE);
+                //              BufferedImage(ColorModel cm, WritableRaster raster, boolean isRasterPremultiplied, Hashtable<?,?> properties)
+                BufferedImage image = new BufferedImage(cm, raster, false, null);
 
                 ImageIO.write(image, "png", new File(selectedFile.getName() + "\\" + fileIndex + ".png"));
             }
